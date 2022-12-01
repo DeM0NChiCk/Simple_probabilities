@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Simple probabilities</string>
+    <string name="main_menu">Main menu</string>
+    <string name="choose_method">Choose method</string>
+    <string name="permutations">permutations</string>
+    <string name="combinations">combinations</string>
+    <string name="placements">placements</string>
+    <string name="without_repetition">without repetition</string>
+    <string name="with_repetitions">with repetitions</string>
+    <string name="choose_method_permutations">Choose method permutations</string>
+    <string name="choose_method_combinations">Choose method combinations</string>
+    <string name="choose_method_placements">Choose method placements</string>
+</resources>
