@@ -76,14 +76,16 @@ class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_re
         try {
             if (n_combination == null || m_combination == null) {
                 result.text = resources.getString(R.string.incorrectly)
-            } else if (n_combination.text.toString().toInt() >= 40) {
-                result.text = resources.getString(R.string.number_high)
             } else {
-                val number_1: Long = CalculateFactorial().factorial(n_combination.text.toString().toLong() + m_combination.text.toString().toLong() - 1)
-                val number_2: Long = CalculateFactorial().factorial(n_combination.text.toString().toLong() - 1)
-                val number_3: Long = CalculateFactorial().factorial(m_combination.text.toString().toLong())
-                val number_res: Long = number_1/(number_2*number_3)
-                result.text = resources.getString(R.string.res_calculate_combination_with) + " $number_res"
+                if (n_combination.text.toString().toInt() >= 11 || m_combination.text.toString().toInt() >= 12) {
+                    result.text = resources.getString(R.string.number_high)
+                } else {
+                    val number_1: Long = CalculateFactorial().factorial(n_combination.text.toString().toLong() + m_combination.text.toString().toLong() - 1)
+                    val number_2: Long = CalculateFactorial().factorial(n_combination.text.toString().toLong() - 1)
+                    val number_3: Long = CalculateFactorial().factorial(m_combination.text.toString().toLong())
+                    val number_res: Long = number_1/(number_2*number_3)
+                    result.text = resources.getString(R.string.res_calculate_combination_with) + "$number_res"
+                }
             }
 
         } catch (e: Exception) {

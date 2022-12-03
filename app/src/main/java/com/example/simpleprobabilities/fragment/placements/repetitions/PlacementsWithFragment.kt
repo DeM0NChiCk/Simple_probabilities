@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.EditText
+import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -25,6 +27,14 @@ class PlacementsWithFragment: Fragment(R.layout.fragment_placements_with_repetit
 
         with(binding){
             setTextWatchers()
+
+            btnCalculatePlacements.setOnClickListener {
+                calculation()
+            }
+
+            btnBackChooseMethodPlacements.setOnClickListener {
+                findNavController().navigate(R.id.action_placementsWithFragment_to_placementsMainFragment)
+            }
         }
 
         setupMenu(R.id.action_placementsWithFragment_to_mainFragment2)
@@ -35,7 +45,6 @@ class PlacementsWithFragment: Fragment(R.layout.fragment_placements_with_repetit
         super.onDestroyView()
     }
 
-    // TODO: сделать возврат на выбор способа потворения
     private fun setupMenu(r1: Int){
         val menuHost = requireActivity() as MenuHost
 
@@ -58,6 +67,26 @@ class PlacementsWithFragment: Fragment(R.layout.fragment_placements_with_repetit
         )
     }
 
+    private fun calculation(){
+        val n_placements: EditText? = requireActivity().findViewById(R.id.edit_number_n_placements)
+        val m_placements: EditText? = requireActivity().findViewById(R.id.edit_number_m_placements)
+        val result: TextView = requireActivity().findViewById(R.id.tw_result_placements)
+
+        try {
+            if (n_placements == null || m_placements==null)
+            {
+                result.text = resources.getString(R.string.incorrectly)
+            } else {
+                val res_placements: Long = Math.pow(n_placements.text.toString().toDouble(), m_placements.text.toString().toDouble()).toLong()
+                if (res_placements <= 2000000000){
+                    result.text = resources.getString(R.string.res_calculate_placements_with) + "$res_placements"
+                } else {
+                    result.text = resources.getString(R.string.number_high)
+                }
+            }
+        } catch (e:Exception){ result.text = resources.getString(R.string.incorrectly) }
+    }
+
     private fun setTextWatchers() {
         val textWatcher: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -71,7 +100,7 @@ class PlacementsWithFragment: Fragment(R.layout.fragment_placements_with_repetit
             editNumberMPlacements.addTextChangedListener(textWatcher)
         }
     }
-    // TODO: сделать проверку для n и m
+
     private fun checkSetTextButton(){
         with(binding) {
             btnCalculatePlacements.isEnabled = !editNumberNPlacements.text.isNullOrBlank() &&

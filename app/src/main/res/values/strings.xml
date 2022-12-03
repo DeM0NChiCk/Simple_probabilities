@@ -15,11 +15,12 @@
     <string name="enter_m">Enter m</string>
     <string name="enter_all_n">Enter n1 n2 … nk</string>
     <string name="calculate">Calculate</string>
-    <string name="res_calculate_combination_with">Result calculate combinations with repetitions: </string>
-    <string name="res_calculate_permutations_with">Result calculate permutations with repetitions: </string>
-    <string name="res_calculate_placements_with">Result calculate placements with repetitions:</string>
+    <string name="res_calculate_combination_with">Result calculate combinations with repetitions: \n</string>
+    <string name="res_calculate_permutations_with">Result calculate permutations with repetitions: \n</string>
+    <string name="res_calculate_placements_with">Result calculate placements with repetitions: \n</string>
     <string name="incorrectly">Data entered incorrectly</string>
     <string name="number_high">The number is too high</string>
     <string name="bach_choose_method">Bach choose method</string>
     <string name="back">Back</string>
+    <string name="fill">Fill in the fields </string>
 </resources>
