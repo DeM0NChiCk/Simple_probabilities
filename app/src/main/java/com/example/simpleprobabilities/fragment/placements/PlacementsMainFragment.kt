@@ -20,6 +20,12 @@ class PlacementsMainFragment: Fragment(R.layout.fragment_placements) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPlacementsBinding.bind(view)
 
+        with(binding){
+            btnPlacementsWith.setOnClickListener {
+                findNavController().navigate(R.id.action_placementsMainFragment_to_placementsWithFragment)
+            }
+        }
+
         setupMenu(R.id.action_placementsMainFragment_to_mainFragment2)
     }
 

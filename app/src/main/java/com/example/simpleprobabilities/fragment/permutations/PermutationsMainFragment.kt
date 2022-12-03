@@ -10,7 +10,6 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
-import com.example.simpleprobabilities.activity.MainActivity
 import com.example.simpleprobabilities.databinding.FragmentPermutationsBinding
 
 class PermutationsMainFragment: Fragment(R.layout.fragment_permutations) {
@@ -20,6 +19,12 @@ class PermutationsMainFragment: Fragment(R.layout.fragment_permutations) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPermutationsBinding.bind(view)
+
+        with(binding){
+            btnPermutationsWith.setOnClickListener{
+                findNavController().navigate(R.id.action_permutationsMainFragment_to_permutationsWithFragment)
+            }
+        }
 
         setupMenu(R.id.action_permutationsMainFragment_to_mainFragment2)
     }

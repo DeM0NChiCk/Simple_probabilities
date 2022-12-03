@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_choose_mtd"
+        android:id="@+id/tv_choose_mtd_combinations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_permutations"
+        android:id="@+id/btn_combinations_with"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -28,10 +28,10 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_choose_mtd" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_mtd_combinations" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_combinations"
+        android:id="@+id/btn_combinations_without"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -41,6 +41,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_permutations" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_combinations_with" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

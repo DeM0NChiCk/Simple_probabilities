@@ -20,6 +20,12 @@ class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCombinationsBinding.bind(view)
 
+        with(binding){
+            btnCombinationsWith.setOnClickListener{
+                findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithFragment)
+            }
+        }
+
         setupMenu(R.id.action_combinationsMainFragment_to_mainFragment2) // функция для перехода в галвное меню
     }
 
@@ -46,6 +52,7 @@ class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
                             findNavController().navigate(r1)
                             true
                         }
+
                         else -> false
                     }
                 }
