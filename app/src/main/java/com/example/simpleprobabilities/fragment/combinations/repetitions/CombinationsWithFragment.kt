@@ -91,7 +91,6 @@ class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_re
         }
     }
 
-
     private fun setTextWatchers() {
         val textWatcher: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
