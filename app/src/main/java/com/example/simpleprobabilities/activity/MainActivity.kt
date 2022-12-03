@@ -10,7 +10,7 @@ import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!

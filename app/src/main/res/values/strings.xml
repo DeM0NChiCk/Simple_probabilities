@@ -18,6 +18,9 @@
     <string name="res_calculate_combination_with">Result calculate combinations with repetitions: \n</string>
     <string name="res_calculate_permutations_with">Result calculate permutations with repetitions: \n</string>
     <string name="res_calculate_placements_with">Result calculate placements with repetitions: \n</string>
+    <string name="res_calculate_combination_without">Result calculate combinations without repetitions: \n</string>
+    <string name="res_calculate_permutations_without">Result calculate permutations without repetitions: \n</string>
+    <string name="res_calculate_placements_without">Result calculate placements without repetitions: \n</string>
     <string name="incorrectly">Data entered incorrectly</string>
     <string name="number_high">The number is too high</string>
     <string name="bach_choose_method">Bach choose method</string>

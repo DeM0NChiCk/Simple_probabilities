@@ -1,4 +1,4 @@
-package com.example.simpleprobabilities.fragment.placements.repetitions
+package com.example.simpleprobabilities.fragment.permutations.repetitions
 
 import android.os.Bundle
 import android.text.Editable
@@ -14,35 +14,58 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
-import com.example.simpleprobabilities.databinding.FragmentPlacementsWithRepetitionsBinding
+import com.example.simpleprobabilities.databinding.FragmentPermutationsWithoutRepetitionsBinding
+import com.example.simpleprobabilities.сalculations.CalculateFactorial
 
-class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repetitions) {
+class PermutationsWithoutFragment : Fragment(R.layout.fragment_permutations_without_repetitions) {
 
-    private var _binding: FragmentPlacementsWithRepetitionsBinding? = null
+    private var _binding: FragmentPermutationsWithoutRepetitionsBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentPlacementsWithRepetitionsBinding.bind(view)
+        _binding = FragmentPermutationsWithoutRepetitionsBinding.bind(view)
 
         with(binding) {
             setTextWatchers()
 
-            btnCalculatePlacements.setOnClickListener {
+            btnCalculatePermutationsWithout.setOnClickListener {
                 calculation()
             }
 
-            btnBackChooseMethodPlacements.setOnClickListener {
-                findNavController().navigate(R.id.action_placementsWithFragment_to_placementsMainFragment)
+            btnBackChooseMethodPermutations.setOnClickListener {
+                findNavController().navigate(R.id.action_permutationsWithoutFragment_to_permutationsMainFragment)
             }
         }
 
-        setupMenu(R.id.action_placementsWithFragment_to_mainFragment2)
+        setupMenu(R.id.action_permutationsWithoutFragment_to_mainFragment2)
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    private fun calculation() {
+        val n_permutations_without: EditText? =
+            requireActivity().findViewById(R.id.edit_number_n_permutations_without)
+        val result: TextView = requireActivity().findViewById(R.id.tw_result_permutations_without)
+
+        try {
+            if (n_permutations_without == null) {
+                result.text = resources.getString(R.string.incorrectly)
+            } else if (n_permutations_without.text.toString().toInt() >= 40) {
+                result.text = resources.getString(R.string.number_high)
+            } else {
+                val res_permutations_without: Long = CalculateFactorial().factorial(
+                    n_permutations_without.text.toString().toLong()
+                )
+                result.text =
+                    resources.getString(R.string.res_calculate_permutations_without) + "$res_permutations_without"
+            }
+        } catch (e: Exception) {
+            result.text = resources.getString(R.string.incorrectly)
+        }
     }
 
     private fun setupMenu(r1: Int) {
@@ -67,31 +90,6 @@ class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repeti
         )
     }
 
-    private fun calculation() {
-        val n_placements: EditText? = requireActivity().findViewById(R.id.edit_number_n_placements)
-        val m_placements: EditText? = requireActivity().findViewById(R.id.edit_number_m_placements)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_placements)
-
-        try {
-            if (n_placements == null || m_placements == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else {
-                val res_placements: Long = Math.pow(
-                    n_placements.text.toString().toDouble(),
-                    m_placements.text.toString().toDouble()
-                ).toLong()
-                if (res_placements <= 2000000000) {
-                    result.text =
-                        resources.getString(R.string.res_calculate_placements_with) + "$res_placements"
-                } else {
-                    result.text = resources.getString(R.string.number_high)
-                }
-            }
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
-        }
-    }
-
     private fun setTextWatchers() {
         val textWatcher: TextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
@@ -101,15 +99,14 @@ class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repeti
             }
         }
         with(binding) {
-            editNumberNPlacements.addTextChangedListener(textWatcher)
-            editNumberMPlacements.addTextChangedListener(textWatcher)
+            editNumberNPermutationsWithout.addTextChangedListener(textWatcher)
         }
     }
 
     private fun checkSetTextButton() {
         with(binding) {
-            btnCalculatePlacements.isEnabled = !editNumberNPlacements.text.isNullOrBlank() &&
-                    !editNumberMPlacements.text.isNullOrBlank()
+            btnCalculatePermutationsWithout.isEnabled =
+                !editNumberNPermutationsWithout.text.isNullOrBlank()
         }
     }
 }

@@ -17,7 +17,7 @@ import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPermutationsWithRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
 
-class PermutationsWithFragment: Fragment (R.layout.fragment_permutations_with_repetitions) {
+class PermutationsWithFragment : Fragment(R.layout.fragment_permutations_with_repetitions) {
 
     private var _binding: FragmentPermutationsWithRepetitionsBinding? = null
     private val binding get() = _binding!!
@@ -26,7 +26,7 @@ class PermutationsWithFragment: Fragment (R.layout.fragment_permutations_with_re
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPermutationsWithRepetitionsBinding.bind(view)
 
-        with(binding){
+        with(binding) {
             setTextWatchers()
 
             btnCalculatePermutations.setOnClickListener {
@@ -46,23 +46,26 @@ class PermutationsWithFragment: Fragment (R.layout.fragment_permutations_with_re
         super.onDestroyView()
     }
 
-    private fun calculate(){
-        val n_permutation: EditText? = requireActivity().findViewById(R.id.edit_number_n_permutations)
-        val nk_permutation: EditText? = requireActivity().findViewById(R.id.edit_number_all_n_permutations)
+    private fun calculate() {
+        val n_permutation: EditText? =
+            requireActivity().findViewById(R.id.edit_number_n_permutations)
+        val nk_permutation: EditText? =
+            requireActivity().findViewById(R.id.edit_number_all_n_permutations)
         val a: Array<String> = nk_permutation?.text.toString().split(" ").toTypedArray()
         val result: TextView = requireActivity().findViewById(R.id.tw_result_permutations)
 
         try {
-            if (n_permutation == null || nk_permutation == null ) {
+            if (n_permutation == null || nk_permutation == null) {
                 result.text = resources.getString(R.string.incorrectly)
             } else if (n_permutation.text.toString().toInt() >= 40) {
-                    result.text = resources.getString(R.string.number_high)
+                result.text = resources.getString(R.string.number_high)
             } else {
-                val r_number_1: Long = CalculateFactorial().factorial(n_permutation.text.toString().toLong())
+                val r_number_1: Long =
+                    CalculateFactorial().factorial(n_permutation.text.toString().toLong())
                 var r_number_2: Long = 1
                 var count = 0
                 for (i in a.indices) {
-                    if (a[i].toInt() >= 40){
+                    if (a[i].toInt() >= 40) {
                         result.text = resources.getString(R.string.incorrectly)
                         break
                     }
@@ -71,24 +74,25 @@ class PermutationsWithFragment: Fragment (R.layout.fragment_permutations_with_re
 
 
                 }
-                if (count != n_permutation.text.toString().toInt()){
+                if (count != n_permutation.text.toString().toInt()) {
                     result.text = resources.getString(R.string.incorrectly)
                 } else {
-                    val res_permutation: Long = r_number_1/r_number_2
-                    if (res_permutation <= 2000000000){
-                        result.text = resources.getString(R.string.res_calculate_permutations_with) + "$res_permutation"
+                    val res_permutation: Long = r_number_1 / r_number_2
+                    if (res_permutation <= 2000000000) {
+                        result.text =
+                            resources.getString(R.string.res_calculate_permutations_with) + "$res_permutation"
                     } else {
                         result.text = resources.getString(R.string.number_high)
                     }
                 }
             }
 
-        } catch (e:Exception){
+        } catch (e: Exception) {
             result.text = resources.getString(R.string.incorrectly)
         }
     }
 
-    private fun setupMenu(r1: Int){
+    private fun setupMenu(r1: Int) {
         val menuHost = requireActivity() as MenuHost
 
         menuHost.addMenuProvider(
@@ -118,13 +122,13 @@ class PermutationsWithFragment: Fragment (R.layout.fragment_permutations_with_re
                 checkSetTextButton()
             }
         }
-        with(binding){
+        with(binding) {
             editNumberNPermutations.addTextChangedListener(textWatcher)
             editNumberAllNPermutations.addTextChangedListener(textWatcher)
         }
     }
 
-    private fun checkSetTextButton(){
+    private fun checkSetTextButton() {
         with(binding) {
             btnCalculatePermutations.isEnabled = !editNumberNPermutations.text.isNullOrBlank() &&
                     !editNumberAllNPermutations.text.isNullOrBlank()

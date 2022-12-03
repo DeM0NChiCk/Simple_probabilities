@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsBinding
 
-class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
+class CombinationsMainFragment : Fragment(R.layout.fragment_combinations) {
     private var _binding: FragmentCombinationsBinding? = null
     private val binding get() = _binding!!
 
@@ -20,9 +20,12 @@ class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCombinationsBinding.bind(view)
 
-        with(binding){
-            btnCombinationsWith.setOnClickListener{
+        with(binding) {
+            btnCombinationsWith.setOnClickListener {
                 findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithFragment)
+            }
+            btnCombinationsWithout.setOnClickListener {
+                findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithoutFragment)
             }
         }
 
