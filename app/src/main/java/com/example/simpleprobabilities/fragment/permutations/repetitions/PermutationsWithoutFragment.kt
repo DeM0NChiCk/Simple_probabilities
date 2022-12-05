@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPermutationsWithoutRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class PermutationsWithoutFragment : Fragment(R.layout.fragment_permutations_without_repetitions) {
 
@@ -54,11 +55,11 @@ class PermutationsWithoutFragment : Fragment(R.layout.fragment_permutations_with
         try {
             if (n_permutations_without == null) {
                 result.text = resources.getString(R.string.incorrectly)
-            } else if (n_permutations_without.text.toString().toInt() >= 40) {
-                result.text = resources.getString(R.string.number_high)
             } else {
-                val res_permutations_without: Long = CalculateFactorial().factorial(
-                    n_permutations_without.text.toString().toLong()
+                val res_permutations_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(
+                        n_permutations_without.text.toString().toLong()
+                    )
                 )
                 result.text =
                     resources.getString(R.string.res_calculate_permutations_without) + "$res_permutations_without"

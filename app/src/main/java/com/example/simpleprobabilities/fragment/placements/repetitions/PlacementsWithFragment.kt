@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPlacementsWithRepetitionsBinding
+import java.math.BigInteger
 
 class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repetitions) {
 
@@ -76,16 +77,12 @@ class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repeti
             if (n_placements == null || m_placements == null) {
                 result.text = resources.getString(R.string.incorrectly)
             } else {
-                val res_placements: Long = Math.pow(
+                val res_placements: BigInteger = BigInteger.valueOf(Math.pow(
                     n_placements.text.toString().toDouble(),
                     m_placements.text.toString().toDouble()
-                ).toLong()
-                if (res_placements <= 2000000000) {
-                    result.text =
-                        resources.getString(R.string.res_calculate_placements_with) + "$res_placements"
-                } else {
-                    result.text = resources.getString(R.string.number_high)
-                }
+                ).toLong())
+                result.text =
+                    resources.getString(R.string.res_calculate_placements_with) + "$res_placements"
             }
         } catch (e: Exception) {
             result.text = resources.getString(R.string.incorrectly)

@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPlacementsWithoutRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class PlacementsWithoutFragment : Fragment(R.layout.fragment_placements_without_repetitions) {
     private var _binding: FragmentPlacementsWithoutRepetitionsBinding? = null
@@ -55,19 +56,18 @@ class PlacementsWithoutFragment : Fragment(R.layout.fragment_placements_without_
         try {
             if (n_placements_without == null || m_placements_without == null) {
                 result.text = resources.getString(R.string.incorrectly)
-            } else if (n_placements_without.text.toString()
-                    .toInt() >= 11 || m_placements_without.text.toString().toInt() >= 11
-            ) {
-                result.text = resources.getString(R.string.number_high)
             } else {
-                val num_1_placements_without: Long = CalculateFactorial().factorial(
-                    n_placements_without.text.toString().toLong()
+                val num_1_placements_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(
+                        n_placements_without.text.toString().toLong()
+                    )
                 )
-                val num_2_placements_without: Long = CalculateFactorial().factorial(
-                    n_placements_without.text.toString()
-                        .toLong() - m_placements_without.text.toString().toLong()
+                val num_2_placements_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(
+                        n_placements_without.text.toString().toLong() - m_placements_without.text.toString().toLong()
+                    )
                 )
-                val res_placements_without = num_1_placements_without / num_2_placements_without
+                val res_placements_without: BigInteger = num_1_placements_without.divide(num_2_placements_without)
                 result.text =
                     resources.getString(R.string.res_calculate_placements_without) + "$res_placements_without"
             }

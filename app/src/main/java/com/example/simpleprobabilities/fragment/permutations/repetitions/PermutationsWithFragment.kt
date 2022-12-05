@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPermutationsWithRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class PermutationsWithFragment : Fragment(R.layout.fragment_permutations_with_repetitions) {
 
@@ -57,36 +58,23 @@ class PermutationsWithFragment : Fragment(R.layout.fragment_permutations_with_re
         try {
             if (n_permutation == null || nk_permutation == null) {
                 result.text = resources.getString(R.string.incorrectly)
-            } else if (n_permutation.text.toString().toInt() >= 40) {
-                result.text = resources.getString(R.string.number_high)
             } else {
-                val r_number_1: Long =
-                    CalculateFactorial().factorial(n_permutation.text.toString().toLong())
-                var r_number_2: Long = 1
-                var count = 0
+                val r_number_1: BigInteger =
+                    CalculateFactorial().factorial(BigInteger.valueOf(n_permutation.text.toString().toLong()))
+                var r_number_2 = BigInteger.ONE
+                var count = 0L
                 for (i in a.indices) {
-                    if (a[i].toInt() >= 40) {
-                        result.text = resources.getString(R.string.incorrectly)
-                        break
-                    }
-                    r_number_2 *= CalculateFactorial().factorial(a[i].toLong())
-                    count += a[i].toInt()
-
-
+                    r_number_2 *= CalculateFactorial().factorial(BigInteger.valueOf(a[i].toLong()))
+                    count += a[i].toLong()
                 }
-                if (count != n_permutation.text.toString().toInt()) {
+                if (count != n_permutation.text.toString().toLong()) {
                     result.text = resources.getString(R.string.incorrectly)
                 } else {
-                    val res_permutation: Long = r_number_1 / r_number_2
-                    if (res_permutation <= 2000000000) {
-                        result.text =
-                            resources.getString(R.string.res_calculate_permutations_with) + "$res_permutation"
-                    } else {
-                        result.text = resources.getString(R.string.number_high)
-                    }
+                    val res_permutation: BigInteger = r_number_1.divide(r_number_2)
+                    result.text =
+                        resources.getString(R.string.res_calculate_permutations_with) + "$res_permutation"
                 }
             }
-
         } catch (e: Exception) {
             result.text = resources.getString(R.string.incorrectly)
         }

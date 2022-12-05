@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsWithoutRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class CombinationsWithoutFragment : Fragment(R.layout.fragment_combinations_without_repetitions) {
 
@@ -77,27 +78,24 @@ class CombinationsWithoutFragment : Fragment(R.layout.fragment_combinations_with
 
         try {
             if (n_combinations_without == null || m_combinations_without == null) {
-                result.text = resources.getString(R.string.res_calculate_combination_without)
-            } else if (n_combinations_without.text.toString()
-                    .toInt() >= 40 || m_combinations_without.text.toString().toInt() >= 40
-            ) {
-                result.text = resources.getString(R.string.number_high)
+                result.text = resources.getString(R.string.incorrectly)
             } else if (
-                m_combinations_without.text.toString()
-                    .toInt() <= n_combinations_without.text.toString().toInt()
+                m_combinations_without.text.toString().toInt() <= n_combinations_without.text.toString().toInt()
             ) {
-                val num_1_combination_without: Long = CalculateFactorial().factorial(
-                    n_combinations_without.text.toString().toLong()
+                val num_1_combination_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(n_combinations_without.text.toString().toLong())
                 )
-                val num_2_combination_without: Long = CalculateFactorial().factorial(
-                    n_combinations_without.text.toString()
-                        .toLong() - m_combinations_without.text.toString().toLong()
+                val num_2_combination_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(
+                        n_combinations_without.text.toString().toLong() - m_combinations_without.text.toString().toLong())
                 )
-                val num_3_combination_without: Long = CalculateFactorial().factorial(
-                    m_combinations_without.text.toString().toLong()
+                val num_3_combination_without: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(
+                        m_combinations_without.text.toString().toLong()
+                    )
                 )
-                val number_recult_combination =
-                    num_1_combination_without / (num_2_combination_without * num_3_combination_without)
+                val number_recult_combination: BigInteger =
+                    num_1_combination_without.divide(num_2_combination_without.multiply(num_3_combination_without))
                 result.text =
                     resources.getString(R.string.res_calculate_combination_without) + "$number_recult_combination"
             } else {
@@ -105,7 +103,7 @@ class CombinationsWithoutFragment : Fragment(R.layout.fragment_combinations_with
             }
 
         } catch (e: Exception) {
-            result.text = resources.getString(R.string.res_calculate_combination_without)
+            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

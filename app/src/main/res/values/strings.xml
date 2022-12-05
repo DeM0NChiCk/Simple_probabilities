@@ -22,7 +22,6 @@
     <string name="res_calculate_permutations_without">Результат расчёта перестановки без повторений: \n</string>
     <string name="res_calculate_placements_without">Результат расчёта размещения без повторений: \n</string>
     <string name="incorrectly">Данные введены неверно!</string>
-    <string name="number_high">Факториал числа слишком велик!</string>
     <string name="back">Вернуться</string>
     <string name="fill">Поля пустые, не могу посчитать :( </string>
 </resources>

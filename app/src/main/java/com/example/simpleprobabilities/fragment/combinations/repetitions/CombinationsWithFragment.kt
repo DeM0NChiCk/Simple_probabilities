@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsWithRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_repetitions) {
 
@@ -77,23 +78,17 @@ class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_re
             if (n_combination == null || m_combination == null) {
                 result.text = resources.getString(R.string.incorrectly)
             } else {
-                if (n_combination.text.toString().toInt() >= 11 || m_combination.text.toString()
-                        .toInt() >= 12
-                ) {
-                    result.text = resources.getString(R.string.number_high)
-                } else {
-                    val number_1: Long = CalculateFactorial().factorial(
-                        n_combination.text.toString().toLong() + m_combination.text.toString()
-                            .toLong() - 1
-                    )
-                    val number_2: Long =
-                        CalculateFactorial().factorial(n_combination.text.toString().toLong() - 1)
-                    val number_3: Long =
-                        CalculateFactorial().factorial(m_combination.text.toString().toLong())
-                    val number_res: Long = number_1 / (number_2 * number_3)
-                    result.text =
-                        resources.getString(R.string.res_calculate_combination_with) + "$number_res"
-                }
+                val number_1: BigInteger = CalculateFactorial().factorial(
+                    BigInteger.valueOf(n_combination.text.toString().toLong() + m_combination.text.toString()
+                        .toLong() - 1 )
+                )
+                val number_2: BigInteger =
+                    CalculateFactorial().factorial(BigInteger.valueOf(n_combination.text.toString().toLong() - 1))
+                val number_3: BigInteger =
+                    CalculateFactorial().factorial(BigInteger.valueOf(m_combination.text.toString().toLong()))
+                val number_res: BigInteger = number_1.divide(number_2.multiply(number_3))
+                result.text =
+                    resources.getString(R.string.res_calculate_combination_with) + "$number_res"
             }
 
         } catch (e: Exception) {
