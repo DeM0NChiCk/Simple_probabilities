@@ -24,6 +24,9 @@ class PlacementsMainFragment : Fragment(R.layout.fragment_placements) {
             btnPlacementsWith.setOnClickListener {
                 findNavController().navigate(R.id.action_placementsMainFragment_to_placementsWithFragment)
             }
+            btnPlacementsWithout.setOnClickListener {
+                findNavController().navigate(R.id.action_placementsMainFragment_to_placementsWithoutFragment)
+            }
         }
 
         setupMenu(R.id.action_placementsMainFragment_to_mainFragment2)

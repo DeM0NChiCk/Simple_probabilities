@@ -24,6 +24,9 @@ class PermutationsMainFragment: Fragment(R.layout.fragment_permutations) {
             btnPermutationsWith.setOnClickListener{
                 findNavController().navigate(R.id.action_permutationsMainFragment_to_permutationsWithFragment)
             }
+            btnPermutationsWithout.setOnClickListener {
+                findNavController().navigate(R.id.action_permutationsMainFragment_to_permutationsWithoutFragment)
+            }
         }
 
         setupMenu(R.id.action_permutationsMainFragment_to_mainFragment2)
