@@ -13,17 +13,17 @@
             android:id="@+id/action_mainFragment2_to_combinationsMainFragment"
             app:destination="@id/combinationsMainFragment"
             app:popUpTo="@id/mainFragment2"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment2_to_placementsMainFragment"
             app:destination="@id/placementsMainFragment"
             app:popUpTo="@id/mainFragment2"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment2_to_permutationsMainFragment"
             app:destination="@id/permutationsMainFragment"
             app:popUpTo="@id/mainFragment2"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/combinationsMainFragment"
@@ -34,7 +34,15 @@
             android:id="@+id/action_combinationsMainFragment_to_mainFragment2"
             app:destination="@id/mainFragment2"
             app:popUpTo="@id/combinationsMainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_combinationsMainFragment_to_combinationsWithFragment"
+            app:destination="@id/combinationsWithFragment"
+            app:popUpTo="@id/combinationsMainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_combinationsMainFragment_to_combinationsWithoutFragment"
+            app:destination="@id/combinationsWithoutFragment" />
     </fragment>
     <fragment
         android:id="@+id/permutationsMainFragment"
@@ -45,7 +53,17 @@
             android:id="@+id/action_permutationsMainFragment_to_mainFragment2"
             app:destination="@id/mainFragment2"
             app:popUpTo="@id/permutationsMainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permutationsMainFragment_to_permutationsWithFragment"
+            app:destination="@id/permutationsWithFragment"
+            app:popUpTo="@id/permutationsMainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permutationsMainFragment_to_permutationsWithoutFragment"
+            app:destination="@id/permutationsWithoutFragment"
+            app:popUpTo="@id/permutationsMainFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/placementsMainFragment"
@@ -56,6 +74,112 @@
             android:id="@+id/action_placementsMainFragment_to_mainFragment2"
             app:destination="@id/mainFragment2"
             app:popUpTo="@id/placementsMainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_placementsMainFragment_to_placementsWithFragment"
+            app:destination="@id/placementsWithFragment"
+            app:popUpTo="@id/placementsMainFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_placementsMainFragment_to_placementsWithoutFragment"
+            app:destination="@id/placementsWithoutFragment"
+            app:popUpTo="@id/placementsMainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/combinationsWithFragment"
+        android:name="com.example.simpleprobabilities.fragment.combinations.repetitions.CombinationsWithFragment"
+        android:label="CombinationsWithFragment"
+        tools:layout="@layout/fragment_combinations_with_repetitions">
+        <action
+            android:id="@+id/action_combinationsWithFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/combinationsWithFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_combinationsWithFragment_to_combinationsMainFragment"
+            app:destination="@id/combinationsMainFragment"
+            app:popUpTo="@id/combinationsWithFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/placementsWithFragment"
+        android:name="com.example.simpleprobabilities.fragment.placements.repetitions.PlacementsWithFragment"
+        android:label="PlacementsWithFragment"
+        tools:layout="@layout/fragment_placements_with_repetitions">
+        <action
+            android:id="@+id/action_placementsWithFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/placementsWithFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_placementsWithFragment_to_placementsMainFragment"
+            app:destination="@id/placementsMainFragment"
+            app:popUpTo="@id/placementsWithFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/permutationsWithFragment"
+        android:name="com.example.simpleprobabilities.fragment.permutations.repetitions.PermutationsWithFragment"
+        android:label="PermutationsWithFragment"
+        tools:layout="@layout/fragment_permutations_with_repetitions">
+        <action
+            android:id="@+id/action_permutationsWithFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/permutationsWithFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permutationsWithFragment_to_permutationsMainFragment"
+            app:destination="@id/permutationsMainFragment"
+            app:popUpTo="@id/permutationsWithFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/combinationsWithoutFragment"
+        android:name="com.example.simpleprobabilities.fragment.combinations.repetitions.CombinationsWithoutFragment"
+        android:label="CombinationsWithoutFragment"
+        tools:layout="@layout/fragment_combinations_without_repetitions">
+        <action
+            android:id="@+id/action_combinationsWithoutFragment_to_combinationsMainFragment"
+            app:destination="@id/combinationsMainFragment"
+            app:popUpTo="@id/combinationsWithoutFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_combinationsWithoutFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/combinationsWithoutFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/permutationsWithoutFragment"
+        android:name="com.example.simpleprobabilities.fragment.permutations.repetitions.PermutationsWithoutFragment"
+        android:label="PermutationsWithoutFragment"
+        tools:layout="@layout/fragment_permutations_without_repetitions">
+        <action
+            android:id="@+id/action_permutationsWithoutFragment_to_permutationsMainFragment"
+            app:destination="@id/permutationsMainFragment"
+            app:popUpTo="@id/permutationsWithoutFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permutationsWithoutFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/permutationsWithoutFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/placementsWithoutFragment"
+        android:name="com.example.simpleprobabilities.fragment.placements.repetitions.PlacementsWithoutFragment"
+        android:label="PlacementsWithoutFragment"
+        tools:layout="@layout/fragment_placements_without_repetitions">
+        <action
+            android:id="@+id/action_placementsWithoutFragment_to_placementsMainFragment"
+            app:destination="@id/placementsMainFragment"
+            app:popUpTo="@id/placementsWithoutFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_placementsWithoutFragment_to_mainFragment2"
+            app:destination="@id/mainFragment2"
+            app:popUpTo="@id/placementsWithoutFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

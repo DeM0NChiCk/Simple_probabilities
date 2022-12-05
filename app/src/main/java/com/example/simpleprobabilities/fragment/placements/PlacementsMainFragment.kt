@@ -12,13 +12,22 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPlacementsBinding
 
-class PlacementsMainFragment: Fragment(R.layout.fragment_placements) {
+class PlacementsMainFragment : Fragment(R.layout.fragment_placements) {
     private var _binding: FragmentPlacementsBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentPlacementsBinding.bind(view)
+
+        with(binding) {
+            btnPlacementsWith.setOnClickListener {
+                findNavController().navigate(R.id.action_placementsMainFragment_to_placementsWithFragment)
+            }
+            btnPlacementsWithout.setOnClickListener {
+                findNavController().navigate(R.id.action_placementsMainFragment_to_placementsWithoutFragment)
+            }
+        }
 
         setupMenu(R.id.action_placementsMainFragment_to_mainFragment2)
     }
@@ -28,7 +37,7 @@ class PlacementsMainFragment: Fragment(R.layout.fragment_placements) {
         super.onDestroyView()
     }
 
-    private fun setupMenu(r1: Int){
+    private fun setupMenu(r1: Int) {
         val menuHost = requireActivity() as MenuHost
 
         menuHost.addMenuProvider(

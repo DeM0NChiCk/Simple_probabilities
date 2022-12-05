@@ -12,13 +12,22 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsBinding
 
-class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
+class CombinationsMainFragment : Fragment(R.layout.fragment_combinations) {
     private var _binding: FragmentCombinationsBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentCombinationsBinding.bind(view)
+
+        with(binding) {
+            btnCombinationsWith.setOnClickListener {
+                findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithFragment)
+            }
+            btnCombinationsWithout.setOnClickListener {
+                findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithoutFragment)
+            }
+        }
 
         setupMenu(R.id.action_combinationsMainFragment_to_mainFragment2) // функция для перехода в галвное меню
     }
@@ -46,6 +55,7 @@ class CombinationsMainFragment: Fragment(R.layout.fragment_combinations) {
                             findNavController().navigate(r1)
                             true
                         }
+
                         else -> false
                     }
                 }

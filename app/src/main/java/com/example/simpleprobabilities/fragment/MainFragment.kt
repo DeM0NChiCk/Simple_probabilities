@@ -8,7 +8,7 @@ import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentMainBinding
 
 
-class MainFragment: Fragment(R.layout.fragment_main) {
+class MainFragment : Fragment(R.layout.fragment_main) {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
@@ -16,14 +16,14 @@ class MainFragment: Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainBinding.bind(view)
 
-        with(binding){
-            btnCombinations.setOnClickListener{
+        with(binding) {
+            btnCombinations.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment2_to_combinationsMainFragment)
             }
-            btnPermutations.setOnClickListener{
+            btnPermutations.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment2_to_permutationsMainFragment)
             }
-            btnPlacements.setOnClickListener{
+            btnPlacements.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment2_to_placementsMainFragment)
             }
         }
