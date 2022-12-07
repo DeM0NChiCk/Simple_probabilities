@@ -11,9 +11,9 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.simpleprobabilities.сalculations.CalculateFactorial
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsWithRepetitionsBinding
-import com.example.simpleprobabilities.сalculations.CalculateFactorial
 import java.math.BigInteger
 
 class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_repetitions) {
