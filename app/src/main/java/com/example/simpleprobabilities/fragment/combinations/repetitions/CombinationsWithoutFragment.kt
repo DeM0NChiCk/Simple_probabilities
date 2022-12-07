@@ -7,8 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -70,40 +68,39 @@ class CombinationsWithoutFragment : Fragment(R.layout.fragment_combinations_with
     }
 
     private fun calculation() {
-        val n_combinations_without: EditText? =
-            requireActivity().findViewById(R.id.edit_number_n_combination_without)
-        val m_combinations_without: EditText? =
-            requireActivity().findViewById(R.id.edit_number_m_combination_without)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_combination_without)
 
-        try {
-            if (n_combinations_without == null || m_combinations_without == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else if (
-                m_combinations_without.text.toString().toInt() <= n_combinations_without.text.toString().toInt()
-            ) {
-                val num_1_combination_without: BigInteger = CalculateFactorial().factorial(
-                    BigInteger.valueOf(n_combinations_without.text.toString().toLong())
-                )
-                val num_2_combination_without: BigInteger = CalculateFactorial().factorial(
-                    BigInteger.valueOf(
-                        n_combinations_without.text.toString().toLong() - m_combinations_without.text.toString().toLong())
-                )
-                val num_3_combination_without: BigInteger = CalculateFactorial().factorial(
-                    BigInteger.valueOf(
-                        m_combinations_without.text.toString().toLong()
-                    )
-                )
-                val number_recult_combination: BigInteger =
-                    num_1_combination_without.divide(num_2_combination_without.multiply(num_3_combination_without))
-                result.text =
-                    resources.getString(R.string.res_calculate_combination_without) + "$number_recult_combination"
-            } else {
-                result.text = resources.getString(R.string.incorrectly)
+        with(binding) {
+            val nCombinationWithout = editNumberNCombinationWithout.text.toString()
+            val mCombinationWithout = editNumberMCombinationWithout.text.toString()
+
+            try {
+                if (mCombinationWithout.toLong() <= nCombinationWithout.toLong()) {
+                    val num1CombinationWithout: BigInteger =
+                        CalculateFactorial.factorial(
+                            BigInteger.valueOf(nCombinationWithout.toLong())
+                        )
+                    val num2CombinationWithout: BigInteger =
+                        CalculateFactorial.factorial(
+                            BigInteger.valueOf(
+                                nCombinationWithout.toLong() - mCombinationWithout.toLong()
+                            )
+                        )
+                    val num3CombinationWithout: BigInteger =
+                        CalculateFactorial.factorial(
+                            BigInteger.valueOf(
+                                mCombinationWithout.toLong()
+                            )
+                        )
+                    val numResCombinationWithout: BigInteger =
+                        num1CombinationWithout.divide(num2CombinationWithout.multiply(num3CombinationWithout))
+                    tvResultCombinationWithout.text =
+                        getString(R.string.res_calculate_combination_without, numResCombinationWithout)
+                } else {
+                    tvResultCombinationWithout.text = getString(R.string.incorrectly)
+                }
+            } catch (e:Exception){
+                tvResultCombinationWithout.text = getString(R.string.incorrectly)
             }
-
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

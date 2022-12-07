@@ -7,8 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -48,35 +46,35 @@ class PermutationsWithFragment : Fragment(R.layout.fragment_permutations_with_re
     }
 
     private fun calculate() {
-        val n_permutation: EditText? =
-            requireActivity().findViewById(R.id.edit_number_n_permutations)
-        val nk_permutation: EditText? =
-            requireActivity().findViewById(R.id.edit_number_all_n_permutations)
-        val a: Array<String> = nk_permutation?.text.toString().split(" ").toTypedArray()
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_permutations)
 
-        try {
-            if (n_permutation == null || nk_permutation == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else {
-                val r_number_1: BigInteger =
-                    CalculateFactorial().factorial(BigInteger.valueOf(n_permutation.text.toString().toLong()))
-                var r_number_2 = BigInteger.ONE
+        with(binding){
+            val nPermutationWith = editNumberNPermutations.text.toString()
+            val nkPermutationWith = editNumberAllNPermutations.text.toString()
+            val allValueN: Array<String> = nkPermutationWith.split(" ").toTypedArray()
+
+            try {
+                val num1PermutationWith: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(nPermutationWith.toLong())
+                )
+                var num2PermutationWith = BigInteger.ONE
                 var count = 0L
-                for (i in a.indices) {
-                    r_number_2 *= CalculateFactorial().factorial(BigInteger.valueOf(a[i].toLong()))
-                    count += a[i].toLong()
+                for (i in allValueN.indices) {
+                    num2PermutationWith = num2PermutationWith.multiply(CalculateFactorial.factorial(
+                        BigInteger.valueOf(allValueN[i].toLong())
+                    ))
+                    count += allValueN[i].toLong()
                 }
-                if (count != n_permutation.text.toString().toLong()) {
-                    result.text = resources.getString(R.string.incorrectly)
+                if (count != nPermutationWith.toLong()) {
+                    tvResultPermutations.text = getString(R.string.incorrectly)
                 } else {
-                    val res_permutation: BigInteger = r_number_1.divide(r_number_2)
-                    result.text =
-                        resources.getString(R.string.res_calculate_permutations_with) + "$res_permutation"
+                    val numResPermutationWith: BigInteger = num1PermutationWith.divide(num2PermutationWith)
+                    tvResultPermutations.text =
+                        getString(R.string.res_calculate_permutations_with, numResPermutationWith)
                 }
+
+            } catch (e:Exception){
+                tvResultPermutations.text = getString(R.string.incorrectly)
             }
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

@@ -2,7 +2,7 @@ package com.example.simpleprobabilities.сalculations
 
 import java.math.BigInteger
 
-class CalculateFactorial {
+object CalculateFactorial {
     fun factorial(num: BigInteger): BigInteger {
         var result = BigInteger.ONE
         var i = BigInteger.valueOf(2)

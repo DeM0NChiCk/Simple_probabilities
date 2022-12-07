@@ -7,8 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -68,31 +66,34 @@ class CombinationsWithFragment : Fragment(R.layout.fragment_combinations_with_re
     }
 
     private fun calculation() {
-        val n_combination: EditText? =
-            requireActivity().findViewById(R.id.edit_number_n_combination)
-        val m_combination: EditText? =
-            requireActivity().findViewById(R.id.edit_number_m_combination)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_combination)
-        result.text = resources.getString(R.string.res_calculate_combination_with)
-        try {
-            if (n_combination == null || m_combination == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else {
-                val number_1: BigInteger = CalculateFactorial().factorial(
-                    BigInteger.valueOf(n_combination.text.toString().toLong() + m_combination.text.toString()
-                        .toLong() - 1 )
-                )
-                val number_2: BigInteger =
-                    CalculateFactorial().factorial(BigInteger.valueOf(n_combination.text.toString().toLong() - 1))
-                val number_3: BigInteger =
-                    CalculateFactorial().factorial(BigInteger.valueOf(m_combination.text.toString().toLong()))
-                val number_res: BigInteger = number_1.divide(number_2.multiply(number_3))
-                result.text =
-                    resources.getString(R.string.res_calculate_combination_with) + "$number_res"
-            }
+        with(binding) {
+            val nCombination = editNumberNCombination.text.toString()
+            val mCombination = editNumberMCombination.text.toString()
 
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
+            try {
+                val num1CombinationsWith: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(
+                        nCombination.toLong() + mCombination.toLong() - 1
+                    )
+                )
+                val num2CombinationsWith: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(
+                        nCombination.toLong() - 1
+                    )
+                )
+                val num3CombinationsWith: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(
+                        mCombination.toLong()
+                    )
+                )
+                val numResCombinationsWith: BigInteger = num1CombinationsWith.divide(
+                    num2CombinationsWith.multiply(num3CombinationsWith)
+                )
+                tvResultCombination.text =
+                    getString(R.string.res_calculate_combination_with, numResCombinationsWith)
+            } catch (e: Exception) {
+                tvResultCombination.text = getString(R.string.incorrectly)
+            }
         }
     }
 
