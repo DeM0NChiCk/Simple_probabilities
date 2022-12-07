@@ -7,8 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -16,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPermutationsWithoutRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class PermutationsWithoutFragment : Fragment(R.layout.fragment_permutations_without_repetitions) {
 
@@ -47,24 +46,19 @@ class PermutationsWithoutFragment : Fragment(R.layout.fragment_permutations_with
     }
 
     private fun calculation() {
-        val n_permutations_without: EditText? =
-            requireActivity().findViewById(R.id.edit_number_n_permutations_without)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_permutations_without)
 
-        try {
-            if (n_permutations_without == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else if (n_permutations_without.text.toString().toInt() >= 40) {
-                result.text = resources.getString(R.string.number_high)
-            } else {
-                val res_permutations_without: Long = CalculateFactorial().factorial(
-                    n_permutations_without.text.toString().toLong()
+        with(binding) {
+            val nPermutationWithout = editNumberNPermutationsWithout.text.toString()
+
+            try {
+                val numResPermutationWithout: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(nPermutationWithout.toLong())
                 )
-                result.text =
-                    resources.getString(R.string.res_calculate_permutations_without) + "$res_permutations_without"
+                tvResultPermutationsWithout.text =
+                    getString(R.string.res_calculate_permutations_without, numResPermutationWithout)
+            } catch (e: Exception) {
+                tvResultPermutationsWithout.text = getString(R.string.incorrectly)
             }
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

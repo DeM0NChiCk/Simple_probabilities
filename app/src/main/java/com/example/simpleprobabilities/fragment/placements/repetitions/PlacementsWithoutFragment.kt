@@ -7,8 +7,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
@@ -16,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPlacementsWithoutRepetitionsBinding
 import com.example.simpleprobabilities.сalculations.CalculateFactorial
+import java.math.BigInteger
 
 class PlacementsWithoutFragment : Fragment(R.layout.fragment_placements_without_repetitions) {
     private var _binding: FragmentPlacementsWithoutRepetitionsBinding? = null
@@ -46,34 +45,23 @@ class PlacementsWithoutFragment : Fragment(R.layout.fragment_placements_without_
     }
 
     private fun calculation() {
-        val n_placements_without: EditText? =
-            requireActivity().findViewById(R.id.edit_number_n_placements_without)
-        val m_placements_without: EditText? =
-            requireActivity().findViewById(R.id.edit_number_m_placements_without)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_placements_without)
 
-        try {
-            if (n_placements_without == null || m_placements_without == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else if (n_placements_without.text.toString()
-                    .toInt() >= 11 || m_placements_without.text.toString().toInt() >= 11
-            ) {
-                result.text = resources.getString(R.string.number_high)
-            } else {
-                val num_1_placements_without: Long = CalculateFactorial().factorial(
-                    n_placements_without.text.toString().toLong()
+        with(binding){
+            val nPlacementWithout = editNumberNPlacementsWithout.text.toString()
+            val mPlacementWithout = editNumberMPlacementsWithout.text.toString()
+
+            try {
+                val num1PlacementWithout: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(nPlacementWithout.toLong())
                 )
-                val num_2_placements_without: Long = CalculateFactorial().factorial(
-                    n_placements_without.text.toString()
-                        .toLong() - m_placements_without.text.toString().toLong()
+                val num2PlacementWithout: BigInteger = CalculateFactorial.factorial(
+                    BigInteger.valueOf(nPlacementWithout.toLong() - mPlacementWithout.toLong())
                 )
-                val res_placements_without = num_1_placements_without / num_2_placements_without
-                result.text =
-                    resources.getString(R.string.res_calculate_placements_without) + "$res_placements_without"
+                val numResPlacementWithout: BigInteger = num1PlacementWithout.divide(num2PlacementWithout)
+                tvResultPlacementsWithout.text = getString(R.string.res_calculate_placements_without, numResPlacementWithout)
+            } catch (e:Exception){
+                tvResultPlacementsWithout.text = getString(R.string.incorrectly)
             }
-
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

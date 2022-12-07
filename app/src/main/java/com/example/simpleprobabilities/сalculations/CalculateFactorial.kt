@@ -1,9 +1,15 @@
 package com.example.simpleprobabilities.сalculations
 
-class CalculateFactorial {
-    fun factorial(num: Long): Long {
-        var result = 1L
-        for (i in 2..num) result *= i
+import java.math.BigInteger
+
+object CalculateFactorial {
+    fun factorial(num: BigInteger): BigInteger {
+        var result = BigInteger.ONE
+        var i = BigInteger.valueOf(2)
+        while (i.compareTo(num)==-1 || i.compareTo(num)==0){
+            result = result.multiply(i)
+            i = i.plus(BigInteger.ONE)
+        }
         return result
     }
 }

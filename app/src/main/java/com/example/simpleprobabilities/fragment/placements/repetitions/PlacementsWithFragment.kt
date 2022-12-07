@@ -7,14 +7,14 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentPlacementsWithRepetitionsBinding
+import java.math.BigInteger
+import kotlin.math.pow
 
 class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repetitions) {
 
@@ -68,27 +68,19 @@ class PlacementsWithFragment : Fragment(R.layout.fragment_placements_with_repeti
     }
 
     private fun calculation() {
-        val n_placements: EditText? = requireActivity().findViewById(R.id.edit_number_n_placements)
-        val m_placements: EditText? = requireActivity().findViewById(R.id.edit_number_m_placements)
-        val result: TextView = requireActivity().findViewById(R.id.tw_result_placements)
 
-        try {
-            if (n_placements == null || m_placements == null) {
-                result.text = resources.getString(R.string.incorrectly)
-            } else {
-                val res_placements: Long = Math.pow(
-                    n_placements.text.toString().toDouble(),
-                    m_placements.text.toString().toDouble()
-                ).toLong()
-                if (res_placements <= 2000000000) {
-                    result.text =
-                        resources.getString(R.string.res_calculate_placements_with) + "$res_placements"
-                } else {
-                    result.text = resources.getString(R.string.number_high)
-                }
+        with(binding){
+            val nPlacementWith = editNumberNPlacements.text.toString()
+            val mPlacementWith = editNumberMPlacements.text.toString()
+
+            try {
+                val numResPlacementWith: BigInteger = BigInteger.valueOf(
+                    nPlacementWith.toDouble().pow(mPlacementWith.toDouble()).toLong()
+                )
+                tvResultPlacements.text = getString(R.string.res_calculate_placements_with, numResPlacementWith)
+            } catch (e:Exception){
+                tvResultPlacements.text = getString(R.string.incorrectly)
             }
-        } catch (e: Exception) {
-            result.text = resources.getString(R.string.incorrectly)
         }
     }
 

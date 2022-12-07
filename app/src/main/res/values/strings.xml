@@ -12,17 +12,16 @@
     <string name="choose_method_placements">Выберите способ размещения</string>
     <string name="enter_data_in_the_input_field">Введите данные</string>
     <string name="enter_n">Введите n</string>
-    <string name="enter_m">Введите м</string>
+    <string name="enter_m">Введите m</string>
     <string name="enter_all_n">Введите n1 n2 … nk</string>
-    <string name="calculate">Рассчитать</string>
-    <string name="res_calculate_combination_with">Результат расчёта сочетания с повторениями: \n</string>
-    <string name="res_calculate_permutations_with">Результат расчёта перестановки с повторениями: \n</string>
-    <string name="res_calculate_placements_with">Результат расчёта размещения с повторениями: \n</string>
-    <string name="res_calculate_combination_without">Результат расчёта сочетания без повторений: \n</string>
-    <string name="res_calculate_permutations_without">Результат расчёта перестановки без повторений: \n</string>
-    <string name="res_calculate_placements_without">Результат расчёта размещения без повторений: \n</string>
+    <string name="calculate">рассчитать</string>
+    <string name="res_calculate_combination_with">Результат расчёта сочетания с повторениями: \n%1$s</string>
+    <string name="res_calculate_permutations_with">Результат расчёта перестановки с повторениями: \n%1$s</string>
+    <string name="res_calculate_placements_with">Результат расчёта размещения с повторениями: \n%1$s</string>
+    <string name="res_calculate_combination_without">Результат расчёта сочетания без повторений: \n%1$s</string>
+    <string name="res_calculate_permutations_without">Результат расчёта перестановки без повторений: \n%1$s</string>
+    <string name="res_calculate_placements_without">Результат расчёта размещения без повторений: \n%1$s</string>
     <string name="incorrectly">Данные введены неверно!</string>
-    <string name="number_high">Факториал числа слишком велик!</string>
-    <string name="back">Вернуться</string>
+    <string name="back">вернуться</string>
     <string name="fill">Поля пустые, не могу посчитать :( </string>
 </resources>
