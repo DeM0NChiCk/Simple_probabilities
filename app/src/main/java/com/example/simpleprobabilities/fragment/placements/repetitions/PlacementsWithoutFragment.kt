@@ -51,14 +51,18 @@ class PlacementsWithoutFragment : Fragment(R.layout.fragment_placements_without_
             val mPlacementWithout = editNumberMPlacementsWithout.text.toString()
 
             try {
-                val num1PlacementWithout: BigInteger = CalculateFactorial.factorial(
-                    BigInteger.valueOf(nPlacementWithout.toLong())
-                )
-                val num2PlacementWithout: BigInteger = CalculateFactorial.factorial(
-                    BigInteger.valueOf(nPlacementWithout.toLong() - mPlacementWithout.toLong())
-                )
-                val numResPlacementWithout: BigInteger = num1PlacementWithout.divide(num2PlacementWithout)
-                tvResultPlacementsWithout.text = getString(R.string.res_calculate_placements_without, numResPlacementWithout)
+                if (mPlacementWithout.toLong() <= nPlacementWithout.toLong()) {
+                    val num1PlacementWithout: BigInteger = CalculateFactorial.factorial(
+                        BigInteger.valueOf(nPlacementWithout.toLong())
+                    )
+                    val num2PlacementWithout: BigInteger = CalculateFactorial.factorial(
+                        BigInteger.valueOf(nPlacementWithout.toLong() - mPlacementWithout.toLong())
+                    )
+                    val numResPlacementWithout: BigInteger =
+                        num1PlacementWithout.divide(num2PlacementWithout)
+                    tvResultPlacementsWithout.text =
+                        getString(R.string.res_calculate_placements_without, numResPlacementWithout)
+                } else { tvResultPlacementsWithout.text = getString(R.string.incorrectly) }
             } catch (e:Exception){
                 tvResultPlacementsWithout.text = getString(R.string.incorrectly)
             }

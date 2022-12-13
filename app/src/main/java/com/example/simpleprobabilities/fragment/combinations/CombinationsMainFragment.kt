@@ -13,6 +13,7 @@ import com.example.simpleprobabilities.R
 import com.example.simpleprobabilities.databinding.FragmentCombinationsBinding
 
 class CombinationsMainFragment : Fragment(R.layout.fragment_combinations) {
+
     private var _binding: FragmentCombinationsBinding? = null
     private val binding get() = _binding!!
 
@@ -24,6 +25,7 @@ class CombinationsMainFragment : Fragment(R.layout.fragment_combinations) {
             btnCombinationsWith.setOnClickListener {
                 findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithFragment)
             }
+
             btnCombinationsWithout.setOnClickListener {
                 findNavController().navigate(R.id.action_combinationsMainFragment_to_combinationsWithoutFragment)
             }
